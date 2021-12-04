@@ -25,3 +25,5 @@ you will get hello world with the hostname of one of the 2 webservers refresh th
 engine is working.
 
 ##### haproxy dashboard http://hostip:/haproxy?stats admin:admin
+
+###### you can also copy deployment.sh run chmod +x deployment.sh and excute the script ./deployment.sh this will clone the repo and run terraform

@@ -18,7 +18,6 @@ resource "docker_image" "skybox-app" {
     path = "load-balancing/app1"
     tag  = ["skybox-app:latest"]
   }
-  force_remove = true
 }
 
 resource "docker_network" "private_network" {
@@ -50,7 +49,6 @@ resource "docker_image" "skybox-haproxy" {
     path = "load-balancing/haproxy"
     tag  = ["skybox-haproxy:latest"]
   }
-  force_remove = true
 }
 
 

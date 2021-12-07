@@ -18,6 +18,16 @@ resource "docker_image" "skybox-app" {
     path = "load-balancing/app1"
     tag  = ["skybox-app:latest"]
   }
+  force_remove= true
+}
+
+resource "docker_image" "skybox-haproxy" {
+  name = "skybox-haproxy"
+  build {
+    path = "load-balancing/haproxy"
+    tag  = ["skybox-haproxy:latest"]
+  }
+  force_remove= true
 }
 
 resource "docker_network" "private_network" {
@@ -42,15 +52,6 @@ resource "docker_container" "skybox-app" {
     internal = 5000
   }
 }
-
-resource "docker_image" "skybox-haproxy" {
-  name = "skybox-haproxy"
-  build {
-    path = "load-balancing/haproxy"
-    tag  = ["skybox-haproxy:latest"]
-  }
-}
-
 
 resource "docker_container" "skybox-haproxy" {
   image = "skybox-haproxy:latest"

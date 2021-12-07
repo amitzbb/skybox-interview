@@ -28,6 +28,9 @@ resource "docker_image" "skybox-haproxy" {
     tag  = ["skybox-haproxy:latest"]
   }
   force_remove= true
+  depends_on = [
+    local_file.haproxy,
+  ]
 }
 
 resource "docker_network" "private_network" {
@@ -38,6 +41,9 @@ resource "docker_network" "private_network" {
     gateway = "10.0.1.254"
   }
 }
+
+
+
 
 resource "docker_container" "skybox-app" {
   image = "skybox-app:latest"
@@ -51,6 +57,9 @@ resource "docker_container" "skybox-app" {
   ports {
     internal = 5000
   }
+  depends_on = [
+    docker_image.skybox-app,
+  ]
 }
 
 resource "docker_container" "skybox-haproxy" {
@@ -66,6 +75,9 @@ resource "docker_container" "skybox-haproxy" {
     internal = 80
     external = 80
   }
+    depends_on = [
+    docker_image.skybox-haproxy,
+  ]
 }
 
 

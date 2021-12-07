@@ -1,4 +1,4 @@
-FROM python:3
+FROM python:slim-buster
 
 COPY ./requirements.txt /requirements.txt
 
